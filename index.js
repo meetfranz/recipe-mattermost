@@ -2,15 +2,13 @@ module.exports = Franz => class Mattermost extends Franz {
   async validateUrl(url) {
     const baseUrl = new window.URL(url);
     try {
-      const resp = await window.fetch(`${baseUrl.origin}/api/v3/users/initial_load`, {
+      const resp = await window.fetch(`${baseUrl.origin}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      const data = await resp.json();
-
-      return Object.hasOwnProperty.call(data, 'client_cfg');
+      return resp.status.toString().startsWith('2');
     } catch (err) {
       console.error(err);
     }
