@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = Franz => {
   const getMessages = function getMessages() {
     const directMessages = document.querySelectorAll('.sidebar--left .has-badge .badge').length;
